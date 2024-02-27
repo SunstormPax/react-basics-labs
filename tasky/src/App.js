@@ -11,16 +11,17 @@ import Grid from '@mui/material/Grid';
 function App() {
   const [ taskState, setTaskState ] = useState({
     tasks: [
-      { id: 1, title:"Dishes", description: "Empty dishwasher", deadline: "Today", done: false },
-      { id: 2, title: "Laundry", description: "Fold clothes and put away", deadline: "Tomorrow", done: false },
-      { id: 3, title: "Tidy up", deadline: "Today", done: false },
-      { id: 4, title: "Make the bed", deadline: "Today", done: false },
-      { id: 5, title: "Cook", description: "Cook dinner for this evening", deadline: "Today", done: false }
+      { id: 1, title:"Dishes", priority: "Low", description: "Empty dishwasher", deadline: "Today", done: false },
+      { id: 2, title: "Laundry", priority: "Medium", description: "Fold clothes and put away", deadline: "Tomorrow", done: false },
+      { id: 3, title: "Tidy up", priority: "High", deadline: "Today", done: false },
+      { id: 4, title: "Make the bed", priority: "Low", deadline: "Today", done: false },
+      { id: 5, title: "Cook", priority: "High", description: "Cook dinner for this evening", deadline: "Today", done: false }
     ]
   });
 
   const [ formState, setFormState ] = useState({
     title: "",
+    priority: "",
     description: "",
     deadline: ""
   });
@@ -57,6 +58,9 @@ function App() {
     switch(event.target.name) {
       case "title":
           form.title = event.target.value;
+          break;
+      case "priority":
+          form.priority = event.target.value;
           break;
       case "description":
           form.description = event.target.value;
@@ -101,6 +105,7 @@ function App() {
           {taskState.tasks.map((task, index) => (
                 <Task 
                 title={task.title}
+                priority={task.priority}
                 description={task.description}
                 deadline={task.deadline}
                 done={task.done}
@@ -112,7 +117,20 @@ function App() {
         </Grid>
       </Container>
       {/* End Task Card Grid */}
-    <AddTaskForm submit={formSubmitHandler} change={formChangeHandler} />
+          {/* Footer - Add Task Form */}
+          <Container
+        component="footer"
+        sx={{
+          borderTop: (theme) => `1px solid ${theme.palette.divider}`,
+          my: 6,
+          py: 6,
+        }}
+      >
+        <Grid container justifyContent="center">
+          <AddTaskForm submit={formSubmitHandler} change={formChangeHandler} />
+        </Grid>
+      </Container>
+      {/* End Footer */}
     
     </div>
     
