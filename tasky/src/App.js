@@ -122,8 +122,8 @@ function App() {
         component="footer"
         sx={{
           borderTop: (theme) => `1px solid ${theme.palette.divider}`,
-          my: 6,
-          py: 6,
+          my: 10,
+          py: 10,
         }}
       >
         <Grid container justifyContent="center">
